@@ -47,6 +47,8 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchLocation = touch.location(in: self)
+//            paddle.run(SKAction.move)
+//            paddle.run(SKAction.move(to: CGPoint(x: touchLocation.x, y: paddle.position.y), duration: 0.1))
             paddle.position.x = touchLocation.x
         }
     }
@@ -70,9 +72,15 @@ extension GameScene: SKPhysicsContactDelegate {
         
         if (bodyAName == "Ball" && bodyBName == "Brick") || bodyAName == "Brick" && bodyBName == "Ball" {
             if bodyAName == "Brick" {
+                DispatchQueue.background(delay: 0.0, background: {
+                    self.audioPlayer.play()
+                })
                 contact.bodyA.node?.removeFromParent()
                 score += 1
             } else if bodyBName == "Brick" {
+                DispatchQueue.background(delay: 0.0, background: {
+                    self.audioPlayer.play()
+                })
                 contact.bodyB.node?.removeFromParent()
                 score += 1
             }
@@ -82,14 +90,12 @@ extension GameScene: SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Winning logic
         if (score == 9) {
-            audioPlayer.play()
             scoreLabel.text = "You Won!"
             self.view?.isPaused = true
         }
         
         // Losing logic
         if (ball.position.y < paddle.position.y) {
-            audioPlayer.play()
             scoreLabel.text = "You Lost!"
             self.view?.isPaused = true
         }

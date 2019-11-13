@@ -16,6 +16,7 @@
 		EDBD783A237B929C006BD695 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDBD7839237B929C006BD695 /* Assets.xcassets */; };
 		EDBD783D237B929C006BD695 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBD783B237B929C006BD695 /* LaunchScreen.storyboard */; };
 		EDCC82D0237BBEA100E517A1 /* brick.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDCC82CF237BBEA100E517A1 /* brick.wav */; };
+		EDCC82D3237BE81A00E517A1 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC82D2237BE81A00E517A1 /* DispatchQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EDBD783C237B929C006BD695 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDBD783E237B929C006BD695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDCC82CF237BBEA100E517A1 /* brick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = brick.wav; sourceTree = "<group>"; };
+		EDCC82D2237BE81A00E517A1 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		EDBD782B237B9298006BD695 /* Breakout */ = {
 			isa = PBXGroup;
 			children = (
+				EDCC82D1237BE38300E517A1 /* Extensions */,
 				EDCC82CF237BBEA100E517A1 /* brick.wav */,
 				EDBD782C237B9298006BD695 /* AppDelegate.swift */,
 				EDBD782E237B9299006BD695 /* GameScene.sks */,
@@ -74,6 +77,14 @@
 				EDBD783E237B929C006BD695 /* Info.plist */,
 			);
 			path = Breakout;
+			sourceTree = "<group>";
+		};
+		EDCC82D1237BE38300E517A1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDCC82D2237BE81A00E517A1 /* DispatchQueue.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				EDBD7833237B9299006BD695 /* GameScene.swift in Sources */,
 				EDBD7835237B9299006BD695 /* GameViewController.swift in Sources */,
 				EDBD782D237B9299006BD695 /* AppDelegate.swift in Sources */,
+				EDCC82D3237BE81A00E517A1 /* DispatchQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
