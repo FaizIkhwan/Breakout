@@ -15,6 +15,7 @@
 		EDBD7838237B9299006BD695 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBD7836237B9299006BD695 /* Main.storyboard */; };
 		EDBD783A237B929C006BD695 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDBD7839237B929C006BD695 /* Assets.xcassets */; };
 		EDBD783D237B929C006BD695 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBD783B237B929C006BD695 /* LaunchScreen.storyboard */; };
+		EDCC82D0237BBEA100E517A1 /* brick.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDCC82CF237BBEA100E517A1 /* brick.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		EDBD7839237B929C006BD695 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDBD783C237B929C006BD695 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDBD783E237B929C006BD695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDCC82CF237BBEA100E517A1 /* brick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = brick.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		EDBD782B237B9298006BD695 /* Breakout */ = {
 			isa = PBXGroup;
 			children = (
+				EDCC82CF237BBEA100E517A1 /* brick.wav */,
 				EDBD782C237B9298006BD695 /* AppDelegate.swift */,
 				EDBD782E237B9299006BD695 /* GameScene.sks */,
 				EDBD7830237B9299006BD695 /* Actions.sks */,
@@ -133,6 +136,7 @@
 			files = (
 				EDBD7838237B9299006BD695 /* Main.storyboard in Resources */,
 				EDBD782F237B9299006BD695 /* GameScene.sks in Resources */,
+				EDCC82D0237BBEA100E517A1 /* brick.wav in Resources */,
 				EDBD783A237B929C006BD695 /* Assets.xcassets in Resources */,
 				EDBD783D237B929C006BD695 /* LaunchScreen.storyboard in Resources */,
 				EDBD7831237B9299006BD695 /* Actions.sks in Resources */,
