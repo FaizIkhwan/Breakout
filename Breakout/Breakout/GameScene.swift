@@ -11,7 +11,7 @@ import GameplayKit
 import SpriteKit
 
 class GameScene: SKScene {
-    
+     
     var ball: SKSpriteNode!
     var paddle: SKSpriteNode!
     var scoreLabel: SKLabelNode!
@@ -26,8 +26,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         ball = self.childNode(withName: "Ball") as! SKSpriteNode
         scoreLabel = self.childNode(withName: "Score") as! SKLabelNode
+        paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
         setupAudioPlayer()
-        setupPaddle()
         
         ball.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
         
@@ -39,34 +39,18 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesBegan")
-        for touch in touches {
-            initialTouchLocation = touch.location(in: self)
-        }
+    
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesMoved")
-        for touch in touches {
+            let touch = touches.first!
             let touchLocation = touch.location(in: self)
-            paddle.position.x = (touchLocation.x - initialTouchLocation.x)
-//            paddle.position.x = (initialTouchLocation.x + touchLocation.x)
-            print("paddle.position.x: \(paddle.position.x)")
-            print("touchLocation.x: \(touchLocation.x)")
-            print("initialTouchLocation.x: \(initialTouchLocation.x)")
-            
-//            let location = touch.location(in: self)
-//            if paddle.contains(location) {
-//                paddle.position.x = location.x
-//            }
-        }
-    }
-    
-    func setupPaddle() {
-        paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
-        paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
-        paddle.physicsBody?.affectedByGravity = false
-        paddle.physicsBody?.allowsRotation = false
+            let previousTouchLocation = touch.previousLocation(in: self)
+            let paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
+            var newXPos = paddle.position.x + (touchLocation.x - previousTouchLocation.x)            
+            newXPos = max(newXPos, (-self.size.width + paddle.size.width)/2)
+            newXPos = min(newXPos, (self.size.width - paddle.size.width)/2)
+            paddle.position = CGPoint(x: newXPos, y: paddle.position.y)
     }
     
     func setupAudioPlayer() {
