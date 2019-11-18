@@ -11,10 +11,13 @@ import GameplayKit
 import SpriteKit
 
 class GameScene: SKScene {
-     
+    
+    let ballSpeed = 50
+    var touched = false
     var ball: SKSpriteNode!
     var paddle: SKSpriteNode!
     var scoreLabel: SKLabelNode!
+    var touchToStartLabel: SKLabelNode!
     var audioPlayer: AVAudioPlayer!
     var initialTouchLocation = CGPoint()
     var score: Int = 0 {
@@ -24,33 +27,46 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        ball = self.childNode(withName: "Ball") as! SKSpriteNode
-        scoreLabel = self.childNode(withName: "Score") as! SKLabelNode
-        paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
+        setupSpriteNode()
         setupAudioPlayer()
-        
-        ball.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
-        
-        let border = SKPhysicsBody(edgeLoopFrom: (view.scene?.frame)!)
-        border.friction = 0
-        self.physicsBody = border
-        
-        self.physicsWorld.contactDelegate = self
+        setupWorld(view: view)        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
+        if touched == false {
+            touched = true
+            setupBall()
+            touchToStartLabel.isHidden = true
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            let touch = touches.first!
-            let touchLocation = touch.location(in: self)
-            let previousTouchLocation = touch.previousLocation(in: self)
-            let paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
-            var newXPos = paddle.position.x + (touchLocation.x - previousTouchLocation.x)            
-            newXPos = max(newXPos, (-self.size.width + paddle.size.width)/2)
-            newXPos = min(newXPos, (self.size.width - paddle.size.width)/2)
-            paddle.position = CGPoint(x: newXPos, y: paddle.position.y)
+        let touch = touches.first!
+        let touchLocation = touch.location(in: self)
+        let previousTouchLocation = touch.previousLocation(in: self)
+        let paddle = self.childNode(withName: "Paddle") as! SKSpriteNode
+        var newXPos = paddle.position.x + (touchLocation.x - previousTouchLocation.x)
+        newXPos = max(newXPos, (-self.size.width + paddle.size.width)/2)
+        newXPos = min(newXPos, (self.size.width - paddle.size.width)/2)
+        paddle.position = CGPoint(x: newXPos, y: paddle.position.y)
+    }
+    
+    func setupBall() {
+        ball.physicsBody?.applyImpulse(CGVector(dx: ballSpeed, dy: ballSpeed))
+    }
+    
+    func setupWorld(view: SKView) {
+        let border = SKPhysicsBody(edgeLoopFrom: (view.scene?.frame)!)
+        border.friction = 0
+        self.physicsBody = border
+        self.physicsWorld.contactDelegate = self
+    }
+    
+    func setupSpriteNode() {
+        ball = (self.childNode(withName: "Ball") as! SKSpriteNode)
+        paddle = (self.childNode(withName: "Paddle") as! SKSpriteNode)
+        scoreLabel = (self.childNode(withName: "Score") as! SKLabelNode)
+        touchToStartLabel = (self.childNode(withName: "StartLabel") as! SKLabelNode)
     }
     
     func setupAudioPlayer() {

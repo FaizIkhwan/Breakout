@@ -16,6 +16,7 @@
 		EDBD7838237B9299006BD695 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBD7836237B9299006BD695 /* Main.storyboard */; };
 		EDBD783A237B929C006BD695 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDBD7839237B929C006BD695 /* Assets.xcassets */; };
 		EDBD783D237B929C006BD695 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBD783B237B929C006BD695 /* LaunchScreen.storyboard */; };
+		EDCB7238237E4AD9002EA106 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EDCB7237237E4AD9002EA106 /* MenuScene.sks */; };
 		EDCC82D0237BBEA100E517A1 /* brick.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDCC82CF237BBEA100E517A1 /* brick.wav */; };
 		EDCC82D3237BE81A00E517A1 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC82D2237BE81A00E517A1 /* DispatchQueue.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		EDBD7839237B929C006BD695 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDBD783C237B929C006BD695 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDBD783E237B929C006BD695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDCB7237237E4AD9002EA106 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		EDCC82CF237BBEA100E517A1 /* brick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = brick.wav; sourceTree = "<group>"; };
 		EDCC82D2237BE81A00E517A1 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				EDBD783B237B929C006BD695 /* LaunchScreen.storyboard */,
 				EDBD783E237B929C006BD695 /* Info.plist */,
 				ED54CC34237D130D00F8E08A /* MenuScene.swift */,
+				EDCB7237237E4AD9002EA106 /* MenuScene.sks */,
 			);
 			path = Breakout;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				EDBD783A237B929C006BD695 /* Assets.xcassets in Resources */,
 				EDBD783D237B929C006BD695 /* LaunchScreen.storyboard in Resources */,
 				EDBD7831237B9299006BD695 /* Actions.sks in Resources */,
+				EDCB7238237E4AD9002EA106 /* MenuScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
