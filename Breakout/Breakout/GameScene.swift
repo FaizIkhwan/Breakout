@@ -17,7 +17,10 @@ class GameScene: SKScene {
     var ball: SKSpriteNode!
     var paddle: SKSpriteNode!
     var scoreLabel: SKLabelNode!
+    var restartButton: SKSpriteNode!
+    var scoreResultLabel: SKLabelNode!
     var touchToStartLabel: SKLabelNode!
+    var highscoreResultLabel: SKLabelNode!
     var audioPlayer: AVAudioPlayer!
     var initialTouchLocation = CGPoint()
     var score: Int = 0 {
@@ -29,7 +32,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         setupSpriteNode()
         setupAudioPlayer()
-        setupWorld(view: view)        
+        hideComponent()
+        setupWorld(view: view)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,6 +41,14 @@ class GameScene: SKScene {
             touched = true
             setupBall()
             touchToStartLabel.isHidden = true
+        }
+        
+        let touch:UITouch = touches.first!
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        guard let name = touchedNode.name else { return }
+        if name == "RestartButton" {
+            print("RESTART BUTTON")
         }
     }
     
@@ -49,6 +61,12 @@ class GameScene: SKScene {
         newXPos = max(newXPos, (-self.size.width + paddle.size.width)/2)
         newXPos = min(newXPos, (self.size.width - paddle.size.width)/2)
         paddle.position = CGPoint(x: newXPos, y: paddle.position.y)
+    }
+    
+    func hideComponent() {
+        scoreResultLabel.isHidden = true
+        highscoreResultLabel.isHidden = true
+        restartButton.isHidden = true
     }
     
     func setupBall() {
@@ -66,7 +84,10 @@ class GameScene: SKScene {
         ball = (self.childNode(withName: "Ball") as! SKSpriteNode)
         paddle = (self.childNode(withName: "Paddle") as! SKSpriteNode)
         scoreLabel = (self.childNode(withName: "Score") as! SKLabelNode)
+        restartButton = (self.childNode(withName: "RestartButton") as! SKSpriteNode)
         touchToStartLabel = (self.childNode(withName: "StartLabel") as! SKLabelNode)
+        scoreResultLabel = (self.childNode(withName: "ScoreResult") as! SKLabelNode)
+        highscoreResultLabel = (self.childNode(withName: "HighscoreResult") as! SKLabelNode)
     }
     
     func setupAudioPlayer() {
@@ -86,6 +107,29 @@ class GameScene: SKScene {
         let goToMenuScene = MenuScene(size: self.size)
         goToMenuScene.scaleMode = SKSceneScaleMode.aspectFill
         self.view?.presentScene(goToMenuScene, transition:revealGameScene)
+    }
+    
+    func displayResult() {
+        scoreResultLabel.isHidden = false
+        highscoreResultLabel.isHidden = false
+        scoreResultLabel.text = "Score: \(score)"
+        let highscore = getHighscore()
+        highscoreResultLabel.text = "Highscore: \(highscore)"
+        restartButton.isHidden = false
+    }
+    
+    func getHighscore() -> Int {
+        var highscore: Int?
+        if let highScoreString = UserDefaults.standard.string(forKey: "highscore"), let highScore = Int(highScoreString) {
+            if self.score > highScore {
+                UserDefaults.standard.set(score, forKey: "highscore")
+                highscore = score
+            }
+        } else {
+            UserDefaults.standard.set(score, forKey: "highscore")
+            highscore = score
+        }
+        return highscore ?? -1
     }
 }
 
@@ -115,12 +159,14 @@ extension GameScene: SKPhysicsContactDelegate {
         // Winning logic
         if (score == 9) {
             scoreLabel.text = "You Won!"
+            displayResult()
             self.view?.isPaused = true
         }
         
         // Losing logic
         if (ball.position.y < paddle.position.y) {
             scoreLabel.text = "You Lost!"
+            displayResult()
             self.view?.isPaused = true
             presentMenu()
         }
